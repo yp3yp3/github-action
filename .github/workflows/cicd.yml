@@ -24,7 +24,7 @@ jobs:
           distribution: 'temurin'  
       - run: |
           mvn build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} versions:commit
-          echo VERSION=$(mvn help:evaluate -Dexpression=project.version | grep "^[^\[]") >> $GITHUB_ENV
+          echo VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout) >> $GITHUB_ENV
       - name: Commit and push changes
         run: |
           git config --global user.name "yp3yp3"
@@ -53,7 +53,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          tags: yp3yp3/github:latest, yp3yp3/github:${{ env.VERSION }}
+          tags: latest, ${{ env.VERSION }}
           annotations: ${{ steps.meta.outputs.annotations }}
           push: true
 #      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
