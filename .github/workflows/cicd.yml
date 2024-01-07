@@ -53,7 +53,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          tags: latest, ${{ env.VERSION }}
+          tags: yp3yp3/github:latest, yp3yp3/github:${{ env.VERSION }}
           annotations: ${{ steps.meta.outputs.annotations }}
           push: true
 #      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
