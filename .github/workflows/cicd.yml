@@ -27,13 +27,13 @@ jobs:
              ${parsedVersion.nextIncrementalVersion} \versions:commit
       - name: Commit and push changes
         run: |
-        git config --global user.name "yp3yp3"
-        git config --global user.email "yp3yp3@gmail.com"
+          git config --global user.name "yp3yp3"
+          git config --global user.email "yp3yp3@gmail.com"
 
-        git add -A
-        git commit -m "change version"
-        git push
-        VERSION=`mvn help:evaluate -Dexpression=project.version | grep "^[^\[]"`
+          git add -A
+          git commit -m "change version"
+          git push
+          VERSION=`mvn help:evaluate -Dexpression=project.version | grep "^[^\[]"`
         
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
