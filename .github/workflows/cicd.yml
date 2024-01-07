@@ -56,10 +56,7 @@ jobs:
           tags: yp3yp3/github:latest, yp3yp3/github:${{ env.VERSION }}
           annotations: ${{ steps.meta.outputs.annotations }}
           push: true
-      - name: Set up Terraform 0.13
-        uses: hashicorp/setup-terraform@v1
-        with:
-          terraform_version: 0.13.x
+
       - name: Terraform Init
         uses: hashicorp/terraform-github-actions/init@v0.4.0
         env:
