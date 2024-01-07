@@ -17,6 +17,23 @@ jobs:
 #      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: Check out repository code
         uses: actions/checkout@v4
+      - name: intall java - maven
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'  
+      - run: mvn build-helper:parse-version versions:set \
+             -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\
+             ${parsedVersion.nextIncrementalVersion} \versions:commit
+      - name: Commit and push changes
+        run: |
+        git config --global user.name "yp3yp3"
+        git config --global user.email "yp3yp3@gmail.com"
+
+        git add -A
+        git commit -m "change version"
+        git push
+        VERSION=`mvn help:evaluate -Dexpression=project.version | grep "^[^\[]"`
         
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -36,7 +53,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: latest, $VERSION
           annotations: ${{ steps.meta.outputs.annotations }}
           push: true
 #      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
