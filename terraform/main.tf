@@ -30,7 +30,7 @@ connection {
     type        = "ssh"
     user        = "ubuntu"
     host        = self.public_ip
-    private_key = file("./yoel.pem")
+    private_key = file("yoel.pem")
   }
 provisioner "remote-exec" {
     inline = [
