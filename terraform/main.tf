@@ -26,7 +26,12 @@ provider "aws" {
 resource "aws_instance" "example_server" {
   ami = "ami-0fa07436ad11fff06"
   instance_type = "t2.micro"
-
+connection {
+    type        = "ssh"
+    user        = "ubuntu"
+    host        = self.public_ip
+    private_key = file("./yoel.pem")
+  }
 provisioner "remote-exec" {
     inline = [
       "sudo docker run yp3yp3/github:latest",
