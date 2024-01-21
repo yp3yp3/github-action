@@ -27,8 +27,6 @@ Maven and Java 17 for local development.
 Contributing
 Contributions to improve the CI/CD process are welcome. Please follow the standard fork, branch, and pull request workflow.
 
-
-
 Acknowledgments
 GitHub Actions for automation.
 Docker for containerization.
