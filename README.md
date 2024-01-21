@@ -1,4 +1,4 @@
-##GitHub Actions and Docker CI/CD Pipeline for Java Maven Project
+## GitHub Actions and Docker CI/CD Pipeline for Java Maven Project
 #Introduction
 This project demonstrates a CI/CD pipeline using GitHub Actions and Docker for a Java Maven project. It automates the process of code integration, Docker image building, and deployment using Terraform.
 
